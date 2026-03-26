@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#F5F1E8" />
+  <circle cx="177" cy="99" r="209" fill="#D5EBE6" fill-opacity="0.7" />
+  <circle cx="1031" cy="545" r="245" fill="#E8D2AA" fill-opacity="0.7" />
+  <rect x="92" y="86" width="1016" height="458" rx="48" fill="white" fill-opacity="0.82" />
+  <rect x="92.5" y="86.5" width="1015" height="457" rx="47.5" stroke="#16201F" stroke-opacity="0.08" />
+  <text x="152" y="236" fill="#0F6F65" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="52" font-weight="700">
+    StackTick Tools
+  </text>
+  <text x="152" y="316" fill="#16201F" font-family="Noto Sans SC, sans-serif" font-size="74" font-weight="800">
+    Cron 表达式解析器
+  </text>
+  <text x="152" y="388" fill="#52615E" font-family="Noto Sans SC, sans-serif" font-size="30">
+    Quartz 6/7 位支持 · 多时区 · 最近执行时间 · 中英文界面
+  </text>
+  <rect x="152" y="441" width="360" height="58" rx="29" fill="#0F6F65" />
+  <text x="192" y="479" fill="#F8FBFA" font-family="Space Grotesk, Noto Sans SC, sans-serif" font-size="26" font-weight="700">
+    stacktick tools
+  </text>
+</svg>
