@@ -1,14 +1,14 @@
-# React Starter Scaffold (React 19 + Vite 8 + TS + Tailwind v4)
+# StackTick Tools
 
-> 这是一个脚手架项目，用于快速启动中后台/组件演示型 React 应用。
+> 面向程序员的双语在线工具箱，当前首发 Cron 表达式生成与解析。
 
 ---
 
 ## 中文说明
 
 ### 项目定位
-- 这是一个可复用的 React 脚手架，包含路由、状态管理、表单、UI 组件与基础布局。
-- 适合作为新项目起点或组件演示/验证环境。
+- 这是一个以独立工具页和 SEO 为核心的程序员在线工具箱。
+- 当前首发工具为 Cron 表达式生成与解析，后续会继续扩展更多开发者工具。
 
 ### 技术栈
 - React 19 + Vite 8 + TypeScript
@@ -60,16 +60,16 @@ src/
 - 组件命名 PascalCase，文件名 kebab-case。
 
 ### 注意事项
-- 这是脚手架项目，请保持结构简洁，避免引入与业务强绑定的内容。
-- Vite 版本为 `8.0.0-beta.11`，不要随意降级。
+- 部署说明见 [`docs/deploy.md`](/F:/github-my/tool/docs/deploy.md)。
+- 自动发版说明见 [`docs/release.md`](/F:/github-my/tool/docs/release.md)。
 
 ---
 
 ## English
 
 ### Purpose
-- This is a reusable React scaffold with routing, state, forms, UI components, and a basic layout.
-- Ideal as a starting point for new projects or a component demo playground.
+- This is a bilingual developer toolbox built around standalone utility pages and SEO-friendly delivery.
+- The first live utility is a cron expression builder and parser, with more tools planned next.
 
 ### Tech Stack
 - React 19 + Vite 8 + TypeScript
@@ -121,5 +121,5 @@ src/
 - PascalCase for components, kebab-case for filenames.
 
 ### Notes
-- This is a scaffold. Keep it clean and reusable; avoid app-specific coupling.
-- Vite version is `8.0.0-beta.11`; avoid downgrades unless necessary.
+- Deployment guide: [`docs/deploy.md`](/F:/github-my/tool/docs/deploy.md)
+- Release guide: [`docs/release.md`](/F:/github-my/tool/docs/release.md)

@@ -156,7 +156,7 @@ sudo systemctl reload nginx
 
 默认行为：
 
-- push 到 `master` 或 `main` 时自动部署所有环境
+- push 到 `main` 时自动部署所有环境
 - 也可以手动执行 `Deploy` workflow
 - 手动执行时可选只部署某一个 Environment
 
