@@ -18,8 +18,6 @@ const distDir = path.join(rootDir, "dist");
 const routes: RouteTarget[] = [
   { distPath: path.join(distDir, "index.html"), pageId: "home", locale: "zh-CN", pathName: "/" },
   { distPath: path.join(distDir, "en", "index.html"), pageId: "home", locale: "en", pathName: "/en/" },
-  { distPath: path.join(distDir, "tools", "index.html"), pageId: "tools", locale: "zh-CN", pathName: "/tools/" },
-  { distPath: path.join(distDir, "en", "tools", "index.html"), pageId: "tools", locale: "en", pathName: "/en/tools/" },
   {
     distPath: path.join(distDir, "tools", "cron-expression", "index.html"),
     pageId: "cron",

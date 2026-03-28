@@ -7,7 +7,7 @@ export function getPagePath(locale: Locale, pageId: PageId) {
     }
 
     if (pageId === "tools") {
-      return "/en/tools/";
+      return "/en/#tools";
     }
 
     return "/en/tools/cron-expression/";
@@ -18,7 +18,7 @@ export function getPagePath(locale: Locale, pageId: PageId) {
   }
 
   if (pageId === "tools") {
-    return "/tools/";
+    return "/#tools";
   }
 
   return "/tools/cron-expression/";

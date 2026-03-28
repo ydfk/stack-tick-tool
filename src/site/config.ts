@@ -4,7 +4,6 @@ export type PageId = "home" | "tools" | "cron";
 type ToolCard = {
   title: string;
   description: string;
-  badge: string;
 };
 
 export type CopyBundle = {
@@ -58,6 +57,24 @@ export type CopyBundle = {
     fields: Array<{ name: string; range: string; detail: string }>;
     notes: string[];
   };
+  cronSeo: {
+    compareEyebrow: string;
+    compareTitle: string;
+    compareDescription: string;
+    compareItems: Array<{ title: string; description: string }>;
+    symbolEyebrow: string;
+    symbolTitle: string;
+    symbolDescription: string;
+    symbolItems: Array<{ symbol: string; title: string; example: string; description: string }>;
+    scenarioEyebrow: string;
+    scenarioTitle: string;
+    scenarioDescription: string;
+    scenarioItems: Array<{ title: string; expression: string; description: string }>;
+    mistakeEyebrow: string;
+    mistakeTitle: string;
+    mistakeDescription: string;
+    mistakeItems: Array<{ title: string; expression: string; description: string }>;
+  };
   cronTool: {
     title: string;
     subtitle: string;
@@ -105,14 +122,14 @@ export const supportedLocales: Locale[] = ["zh-CN", "en"];
 export const siteCopy: Record<Locale, CopyBundle> = {
   "zh-CN": {
     localeLabel: "简体中文",
-    nav: { home: "首页", tools: "工具列表", cron: "Cron 工具" },
+    nav: { home: "首页", tools: "更多工具", cron: "Cron 表达式" },
     hero: {
       eyebrow: "程序员在线工具箱",
       title: "让常用开发者工具保持独立、可搜索、打开就能直接使用。",
       description:
-        "栈刻工具箱首发提供 Cron 表达式生成与解析，重点解决表达式编写、字段理解和执行时间预览。后续会继续扩展更多真正高频的开发者工具。",
-      primaryCta: "直接打开 Cron 工具",
-      secondaryCta: "查看工具列表",
+        "栈刻工具箱当前提供 Cron 表达式生成与解析，重点解决表达式编写、字段理解和执行时间预览。后续会逐步扩展更多高频开发者工具。",
+      primaryCta: "打开 Cron 表达式生成器",
+      secondaryCta: "浏览更多工具",
       stats: [
         { value: "Linux / Quartz", label: "格式支持" },
         { value: "未来 10 次", label: "执行预览" },
@@ -120,39 +137,39 @@ export const siteCopy: Record<Locale, CopyBundle> = {
       ],
     },
     featured: {
-      eyebrow: "首发工具",
-      title: "在线 Cron 表达式解析器",
+      eyebrow: "核心工具",
+      title: "Cron 表达式生成器与解析器",
       description:
-        "首页只保留最核心的入口和产品信息，真正的工具能力都放在独立页面里，避免首页像模板站或功能堆砌页。",
+        "首页聚焦品牌入口和核心工具，完整能力通过独立工具页承载，结构更清晰，也更适合持续扩展。",
     },
     roadmap: {
-      eyebrow: "工具路线图",
-      title: "占位不是空白，而是后续可持续扩展的结构。",
+      eyebrow: "更多工具",
+      title: "围绕高频开发场景持续补齐常用在线工具。",
       description:
-        "目录参考开发者工具常见使用路径，先把关键词、分类页和视觉秩序搭起来，后续逐个填充能力。",
+        "除 Cron 外，后续会继续提供 JSON、正则、JWT、编码与转换等常用能力，并保持统一入口、独立页面和一致的使用体验。",
       items: [
-        { title: "Cron 表达式解析器", description: "Quartz 6/7 位解析、时区切换和未来执行时间。", badge: "已上线" },
-        { title: "JSON 格式化", description: "格式化、压缩、校验与差异对比。", badge: "即将上线" },
-        { title: "正则表达式测试", description: "匹配结果、高亮、替换预览与常用片段。", badge: "即将上线" },
-        { title: "JWT 解码器", description: "Header、Payload、过期时间和签名说明。", badge: "即将上线" },
-        { title: "Base64 编解码", description: "文本与文件场景统一处理。", badge: "即将上线" },
-        { title: "哈希生成器", description: "MD5、SHA 系列与文件摘要。", badge: "即将上线" },
-        { title: "URL 解析器", description: "参数、编码和组成部分一屏查看。", badge: "即将上线" },
+        { title: "Cron 表达式生成器与解析器", description: "支持 Linux 5 位、Quartz 6 位、Quartz 7 位和未来 10 次执行时间预览。" },
+        { title: "JSON 格式化", description: "格式化、压缩、校验与差异对比。" },
+        { title: "正则表达式测试", description: "匹配结果、高亮、替换预览与常用片段。" },
+        { title: "JWT 解码器", description: "Header、Payload、过期时间和签名说明。" },
+        { title: "Base64 编解码", description: "文本与文件场景统一处理。" },
+        { title: "哈希生成器", description: "MD5、SHA 系列与文件摘要。" },
+        { title: "URL 解析器", description: "参数、编码和组成部分一屏查看。" },
       ],
     },
     toolsPage: {
-      eyebrow: "工具列表",
-      title: "每个工具都应该有独立入口，而不是堆在同一页里。",
+      eyebrow: "更多工具",
+      title: "围绕开发流程持续补齐更多在线工具。",
       description:
-        "这里集中展示当前已上线工具和即将上线的开发者工具。后续新增功能时，会优先继续沿用独立页面结构，保证 SEO 和导航清晰。",
-      primaryCta: "打开 Cron 工具",
+        "这里整理站点当前工具与后续扩展方向，所有能力都会保持统一入口和独立页面结构。",
+      primaryCta: "打开 Cron 表达式生成器与解析器",
       secondaryCta: "返回首页",
     },
     architecture: {
       eyebrow: "SEO 与结构",
-      title: "这不是 demo 首页，而是可部署、可收录、可继续长大的站点骨架。",
+      title: "从首版开始就按正式站点的多页结构组织。",
       description:
-        "首版直接按搜索友好的多页结构来做，避免后面从 SPA 硬改 SEO，减少返工。",
+        "首页、工具页和语言路径都保持明确分工，便于部署、收录和后续扩展。",
       items: [
         { title: "静态多页输出", description: "首页和工具页独立 URL，可直接预渲染为完整 HTML。" },
         { title: "语言分路径", description: "中文和英文各自拥有稳定地址，并带有 hreflang 标记。" },
@@ -165,16 +182,16 @@ export const siteCopy: Record<Locale, CopyBundle> = {
       title: "先把用户最关心的几个点解释清楚。",
       items: [
         {
-          question: "这个工具支持 Quartz 6/7 位吗？",
-          answer: "支持。当前解析器兼容 Quartz 常见的 6 位和 7 位表达式，同时也能兼容一部分 5 位写法。",
+          question: "这个工具支持 Linux 和 Quartz 两种格式吗？",
+          answer: "支持。当前工作台同时支持 Linux 5 位、Quartz 6 位和 Quartz 7 位表达式，生成与解析模式都可以切换。",
         },
         {
-          question: "未来执行时间会考虑时区吗？",
-          answer: "会。你可以指定 IANA 时区，例如 Asia/Shanghai、Europe/London、America/New_York，结果会按对应时区计算。",
+          question: "未来执行时间按什么时区计算？",
+          answer: "默认按当前浏览器本地时区计算，打开页面后可以直接看到未来 10 次执行时间，不需要额外选择时区。",
         },
         {
-          question: "为什么首页还放了未上线工具？",
-          answer: "这是为了提前建立清晰的信息架构和搜索入口，后续新增工具时不用重做站点结构。",
+          question: "后续还会继续增加其它工具吗？",
+          answer: "会。站点会继续补充 JSON、正则、JWT、编码转换等常见开发者工具，并保持统一的页面结构和交互方式。",
         },
       ],
     },
@@ -195,12 +212,109 @@ export const siteCopy: Record<Locale, CopyBundle> = {
       notes: [
         "Quartz 常见写法示例：`0 */15 * * * ?` 表示每 15 分钟执行一次。",
         "`?` 只能单独用于“日”和“周”字段，表示该字段不指定。",
-        "当你需要跨团队共享表达式时，建议同时附上时区和自然语言说明。",
+        "如果表达式要在不同时区的服务器上使用，建议在文档里额外标注目标时区。",
+      ],
+    },
+    cronSeo: {
+      compareEyebrow: "格式差异",
+      compareTitle: "Linux Cron 和 Quartz Cron 的区别",
+      compareDescription:
+        "这是 Cron 页面里最常见的理解误区之一。Linux 常见的是 5 位表达式，Quartz 常见的是 6 位或 7 位表达式，字段数量和问号的使用规则并不相同。",
+      compareItems: [
+        {
+          title: "Linux 5 位",
+          description: "只包含 分、时、日、月、周，常见于 crontab 和多数 Linux 服务器任务。",
+        },
+        {
+          title: "Quartz 6 位",
+          description: "在 Linux 5 位基础上增加 秒 字段，适合需要更细时间粒度的调度场景。",
+        },
+        {
+          title: "Quartz 7 位",
+          description: "在 Quartz 6 位基础上增加 年 字段，适合需要显式限定年份的任务。",
+        },
+      ],
+      symbolEyebrow: "高级语法",
+      symbolTitle: "L / W / # / ? 分别是什么意思",
+      symbolDescription:
+        "这些符号是 Cron 搜索里最常见的长尾问题。它们主要出现在 Quartz 表达式中，理解清楚后，像“每月最后一天”或“每月第一个周一”这类规则会更容易写对。",
+      symbolItems: [
+        {
+          symbol: "L",
+          title: "最后一个值",
+          example: "0 30 18 L * ?",
+          description: "`L` 常用于“日”或“周”字段，表示最后一天或最后一个周几，例如每月最后一天 18:30。",
+        },
+        {
+          symbol: "W",
+          title: "最近工作日",
+          example: "0 0 9 15W * ?",
+          description: "`W` 只能跟在某一天后面，表示离这一天最近的工作日，例如每月 15 日最近的工作日上午 9 点。",
+        },
+        {
+          symbol: "#",
+          title: "第几个星期几",
+          example: "0 0 9 ? * MON#1",
+          description: "`#` 用在“周”字段，表示某月第几个星期几，例如 `MON#1` 表示每月第一个周一。",
+        },
+        {
+          symbol: "?",
+          title: "不指定",
+          example: "0 0 9 ? * MON-FRI",
+          description: "问号只用于“日”和“周”字段的互斥场景，表示当前字段不指定，另一个字段负责约束日期。",
+        },
+      ],
+      scenarioEyebrow: "常见场景",
+      scenarioTitle: "这些常见 Cron 场景应该怎么写",
+      scenarioDescription:
+        "比起只记语法，很多用户更常直接搜索具体调度场景。把这些常见表达式放在页面里，既方便复制，也更容易覆盖真实搜索词。",
+      scenarioItems: [
+        {
+          title: "工作日每天 9 点执行",
+          expression: "0 0 9 ? * MON-FRI",
+          description: "这是最常见的工作日定时任务写法，适合日报、对账、定时同步这类业务。",
+        },
+        {
+          title: "每月最后一个工作日 18 点执行",
+          expression: "0 0 18 LW * ?",
+          description: "适合月底结算、报表归档这类任务，`LW` 表示每月最后一个工作日。",
+        },
+        {
+          title: "每月第一个周一 9 点执行",
+          expression: "0 0 9 ? * MON#1",
+          description: "适合月初例会、月度报表、账单推送等“某月第几个星期几”的场景。",
+        },
+        {
+          title: "每月 15 日最近工作日 9 点执行",
+          expression: "0 0 9 15W * ?",
+          description: "当日期落在周末时会自动落到最近工作日，适合薪资、提醒、账单之类的固定日期任务。",
+        },
+      ],
+      mistakeEyebrow: "常见错误",
+      mistakeTitle: "这些 Cron 表达式为什么会报错",
+      mistakeDescription:
+        "很多表达式不是语法完全不会写，而是把字段数、问号和日期位置混用了。下面这些错误示例能帮助用户更快定位问题。",
+      mistakeItems: [
+        {
+          title: "把 Linux 5 位写成 Quartz 6 位",
+          expression: "*/15 * * * * ?",
+          description: "如果你选的是 Linux 5 位，这个表达式会多出一个字段。",
+        },
+        {
+          title: "把 ? 用在月份字段",
+          expression: "0 0 12 ? ? MON",
+          description: "问号只能用于 日 和 周 的互斥场景，月份字段不能写 ?。",
+        },
+        {
+          title: "字段顺序写错",
+          expression: "0 12 * * * ?",
+          description: "Quartz 的顺序是 秒 分 时 日 月 周，不是 秒 时 分 日 月 周。",
+        },
       ],
     },
     cronTool: {
-      title: "实时 Cron 工作台",
-      subtitle: "输入后实时解析，支持多时区预览。",
+      title: "Cron 表达式生成器与解析器",
+      subtitle: "配置或输入后实时生成、解析并预览未来执行时间。",
       builderModeLabel: "生成表达式",
       parserModeLabel: "解析表达式",
       builderTypeLabel: "调度场景",
@@ -243,14 +357,14 @@ export const siteCopy: Record<Locale, CopyBundle> = {
   },
   en: {
     localeLabel: "English",
-    nav: { home: "Home", tools: "Tools", cron: "Cron Tool" },
+    nav: { home: "Home", tools: "More Tools", cron: "Cron Expression" },
     hero: {
       eyebrow: "Developer Toolbox",
       title: "Keep developer tools standalone, searchable, and ready to use the moment the page opens.",
       description:
-        "StackTick Tools launches with a cron builder and parser focused on expression authoring, field clarity, and next-run previews. More high-frequency developer utilities will be added next.",
-      primaryCta: "Open Cron Tool",
-      secondaryCta: "Browse Tools",
+        "StackTick Tools currently focuses on a cron builder and parser for expression authoring, field clarity, and next-run previews. More high-frequency developer utilities will be added over time.",
+      primaryCta: "Open Cron Expression Builder",
+      secondaryCta: "Browse More Tools",
       stats: [
         { value: "Linux / Quartz", label: "syntax coverage" },
         { value: "Next 10", label: "run previews" },
@@ -258,39 +372,39 @@ export const siteCopy: Record<Locale, CopyBundle> = {
       ],
     },
     featured: {
-      eyebrow: "Featured Utility",
-      title: "Cron Expression Parser",
+      eyebrow: "Core Tool",
+      title: "Cron Expression Builder and Parser",
       description:
-        "The homepage stays focused on product entry and structure. The full tool experience lives on dedicated pages instead of turning the landing page into a crowded demo board.",
+        "The homepage stays focused on brand entry and the core tool, while full functionality continues to live on dedicated tool pages.",
     },
     roadmap: {
-      eyebrow: "Tool Roadmap",
-      title: "Placeholder cards are part of the product structure, not filler.",
+      eyebrow: "More Tools",
+      title: "Keep expanding the toolbox around common developer workflows.",
       description:
-        "The roadmap follows the common information architecture of developer tools so the site can scale without redesigning the navigation later.",
+        "Beyond cron, the site will keep adding JSON, regex, JWT, encoding, and other high-frequency utilities with a unified entry, standalone pages, and a consistent product feel.",
       items: [
-        { title: "Cron Expression Parser", description: "Quartz 6/7 parsing, timezone switching, and future run previews.", badge: "Live" },
-        { title: "JSON Formatter", description: "Pretty print, minify, validate, and compare payloads.", badge: "Coming Soon" },
-        { title: "Regex Tester", description: "Preview matches, replacements, and useful snippets.", badge: "Coming Soon" },
-        { title: "JWT Decoder", description: "Inspect claims, expiry, header, and signature context.", badge: "Coming Soon" },
-        { title: "Base64 Encoder", description: "Support both text and file workflows.", badge: "Coming Soon" },
-        { title: "Hash Generator", description: "Create common digests for strings and files.", badge: "Coming Soon" },
-        { title: "URL Parser", description: "Break down query params, encoding, and URL segments.", badge: "Coming Soon" },
+        { title: "Cron Expression Builder and Parser", description: "Supports Linux 5-field, Quartz 6-field, Quartz 7-field, and next 10 run previews." },
+        { title: "JSON Formatter", description: "Pretty print, minify, validate, and compare payloads." },
+        { title: "Regex Tester", description: "Preview matches, replacements, and useful snippets." },
+        { title: "JWT Decoder", description: "Inspect claims, expiry, header, and signature context." },
+        { title: "Base64 Encoder", description: "Support both text and file workflows." },
+        { title: "Hash Generator", description: "Create common digests for strings and files." },
+        { title: "URL Parser", description: "Break down query params, encoding, and URL segments." },
       ],
     },
     toolsPage: {
-      eyebrow: "Tools Directory",
-      title: "Each tool should have its own page instead of sharing one crowded screen.",
+      eyebrow: "More Tools",
+      title: "More tools will keep expanding around everyday developer workflows.",
       description:
-        "This page lists the live utility and the upcoming developer tools. New features will continue to ship as standalone pages to keep navigation and SEO clean.",
-      primaryCta: "Open Cron Tool",
+        "This section summarizes the live utility and the next set of developer tools, all organized with a unified entry and standalone pages.",
+      primaryCta: "Open Cron Expression Builder and Parser",
       secondaryCta: "Back to Home",
     },
     architecture: {
       eyebrow: "SEO Structure",
-      title: "This is a deployable product shell, not a generic starter homepage.",
+      title: "The site uses a production-ready multi-page structure from the start.",
       description:
-        "The first version already ships as a multi-page static site so search visibility does not depend on retrofitting an SPA later.",
+        "Homepage, tool pages, and language paths are clearly separated to support deployment, indexing, and future expansion.",
       items: [
         { title: "Static multi-page output", description: "The homepage and tool page have dedicated URLs and prerendered HTML." },
         { title: "Language-specific paths", description: "Chinese and English live on stable URLs with hreflang annotations." },
@@ -303,16 +417,16 @@ export const siteCopy: Record<Locale, CopyBundle> = {
       title: "Answer the practical questions before users have to ask.",
       items: [
         {
-          question: "Does this support Quartz 6/7 field cron expressions?",
-          answer: "Yes. The parser is designed for common Quartz-style 6-field and 7-field expressions, while still accepting many 5-field forms.",
+          question: "Does this support both Linux and Quartz cron formats?",
+          answer: "Yes. The workbench supports Linux 5-field, Quartz 6-field, and Quartz 7-field expressions in both builder and parser modes.",
         },
         {
-          question: "Are the upcoming run times timezone-aware?",
-          answer: "Yes. You can calculate runs against IANA timezones such as Asia/Shanghai, Europe/London, or America/New_York.",
+          question: "Which timezone is used for next-run previews?",
+          answer: "Upcoming runs are calculated in the current browser local timezone so the page is ready to use without extra timezone setup.",
         },
         {
-          question: "Why show tools that are not live yet?",
-          answer: "Because roadmap cards help define category structure, future landing pages, and search intent before each tool ships.",
+          question: "Will more tools be added later?",
+          answer: "Yes. The site will continue to add common developer utilities such as JSON, regex, JWT, and encoding tools with the same standalone page structure.",
         },
       ],
     },
@@ -333,12 +447,109 @@ export const siteCopy: Record<Locale, CopyBundle> = {
       notes: [
         "A common Quartz example is `0 */15 * * * ?`, which means every 15 minutes.",
         "`?` can only stand alone in the day-of-month or day-of-week fields.",
-        "When you share cron expressions across teams, include both the timezone and a human-readable description.",
+        "If the same expression runs across servers in different regions, document the intended timezone alongside it.",
+      ],
+    },
+    cronSeo: {
+      compareEyebrow: "Format differences",
+      compareTitle: "Linux cron vs Quartz cron",
+      compareDescription:
+        "This is one of the most common Cron misunderstandings. Linux usually uses 5 fields, while Quartz commonly uses 6 or 7 fields, and the rules around field count and question marks are different.",
+      compareItems: [
+        {
+          title: "Linux 5-field",
+          description: "Contains minute, hour, day-of-month, month, and day-of-week. Common in crontab and Linux servers.",
+        },
+        {
+          title: "Quartz 6-field",
+          description: "Adds a seconds field on top of Linux-style scheduling for finer-grained execution.",
+        },
+        {
+          title: "Quartz 7-field",
+          description: "Adds a year field on top of Quartz 6-field when the schedule must be year-bound.",
+        },
+      ],
+      symbolEyebrow: "Advanced syntax",
+      symbolTitle: "What L, W, #, and ? mean in cron",
+      symbolDescription:
+        "These operators drive a lot of long-tail Cron searches. They mostly appear in Quartz expressions and help describe rules like the last day of a month or the first Monday of each month.",
+      symbolItems: [
+        {
+          symbol: "L",
+          title: "Last value",
+          example: "0 30 18 L * ?",
+          description: "`L` is commonly used in the day-of-month or day-of-week field to mean the last day or last matching weekday in a period.",
+        },
+        {
+          symbol: "W",
+          title: "Nearest weekday",
+          example: "0 0 9 15W * ?",
+          description: "`W` follows a day-of-month value and means the nearest weekday, such as the closest weekday to the 15th at 9:00.",
+        },
+        {
+          symbol: "#",
+          title: "Nth weekday",
+          example: "0 0 9 ? * MON#1",
+          description: "`#` belongs in the day-of-week field and means the nth weekday of the month, such as the first Monday.",
+        },
+        {
+          symbol: "?",
+          title: "Not specified",
+          example: "0 0 9 ? * MON-FRI",
+          description: "The question mark only applies to day-of-month and day-of-week when one field should stay unspecified and the other one drives the schedule.",
+        },
+      ],
+      scenarioEyebrow: "Common scenarios",
+      scenarioTitle: "How to write these common cron schedules",
+      scenarioDescription:
+        "Many users search for concrete scheduling patterns instead of syntax names. These examples make the page more useful to copy from and better aligned with real search intent.",
+      scenarioItems: [
+        {
+          title: "Run at 9 AM on weekdays",
+          expression: "0 0 9 ? * MON-FRI",
+          description: "A common weekday schedule for reports, sync jobs, and business-hour automation.",
+        },
+        {
+          title: "Run at 6 PM on the last weekday of the month",
+          expression: "0 0 18 LW * ?",
+          description: "Useful for month-end settlement and archival tasks. `LW` means the last weekday of the month.",
+        },
+        {
+          title: "Run at 9 AM on the first Monday of the month",
+          expression: "0 0 9 ? * MON#1",
+          description: "A common pattern for monthly reports, billing, or scheduled meetings tied to the first Monday.",
+        },
+        {
+          title: "Run at 9 AM on the weekday nearest the 15th",
+          expression: "0 0 9 15W * ?",
+          description: "If the 15th falls on a weekend, the run shifts to the nearest weekday, which is useful for payroll and billing reminders.",
+        },
+      ],
+      mistakeEyebrow: "Common mistakes",
+      mistakeTitle: "Why these Cron expressions fail",
+      mistakeDescription:
+        "Many errors come from mixing field count, question marks, and field positions. These examples help users diagnose issues faster.",
+      mistakeItems: [
+        {
+          title: "Using a Quartz-style field count in Linux mode",
+          expression: "*/15 * * * * ?",
+          description: "If Linux 5-field is selected, this expression contains one field too many.",
+        },
+        {
+          title: "Using ? in the month field",
+          expression: "0 0 12 ? ? MON",
+          description: "The question mark only applies to day-of-month and day-of-week, not the month field.",
+        },
+        {
+          title: "Mixing up field order",
+          expression: "0 12 * * * ?",
+          description: "Quartz order is second, minute, hour, day, month, week, not second, hour, minute, day, month, week.",
+        },
       ],
     },
     cronTool: {
-      title: "Realtime Cron Workbench",
-      subtitle: "Parse instantly with timezone-aware previews.",
+      title: "Cron Expression Builder and Parser",
+      subtitle: "Build, parse, and preview upcoming runs instantly.",
       builderModeLabel: "Build Expression",
       parserModeLabel: "Parse Expression",
       builderTypeLabel: "Schedule preset",
