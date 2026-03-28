@@ -12,9 +12,8 @@
 
 ### 技术栈
 - React 19 + Vite 8 + TypeScript
-- Tailwind v4 + shadcn/ui + Radix UI
-- React Router + Zustand
-- React Hook Form + Zod
+- Tailwind v4 + i18next
+- cronosjs + cronstrue
 - Vitest + Testing Library
 
 ### 快速开始
@@ -38,24 +37,22 @@ pnpm test:run      # 单测(一次性)
 ```bash
 pnpm test -- src/path/to/file.test.tsx
 pnpm test -- -t "test name"
-pnpm test -- shimmer-button
 ```
 
 ### 目录结构
 ```text
 src/
-  components/
-    ui/            # shadcn/ui 组件
-    magicui/       # Magic UI 组件
-    layout/        # 布局与侧边栏
-  pages/
-    components/    # 组件演示页面
+  components/site/ # 站点页面与 Cron 工具
+  i18n/            # 中英文文案与语言初始化
+  lib/             # Cron 解析与生成逻辑
+  site/            # 路由、站点配置、运行时
+  ssg/             # 预渲染入口
   test/            # 测试初始化
 ```
 
 ### 代码规范（简要）
 - 使用 `@/` 作为 `src` 路径别名。
-- 组件优先函数式组件，样式使用 `className` + `cn`。
+- 组件优先函数式组件。
 - Tailwind 为主，尽量避免新增全局 CSS。
 - 组件命名 PascalCase，文件名 kebab-case。
 
@@ -73,9 +70,8 @@ src/
 
 ### Tech Stack
 - React 19 + Vite 8 + TypeScript
-- Tailwind v4 + shadcn/ui + Radix UI
-- React Router + Zustand
-- React Hook Form + Zod
+- Tailwind v4 + i18next
+- cronosjs + cronstrue
 - Vitest + Testing Library
 
 ### Quick Start
@@ -99,24 +95,22 @@ pnpm test:run      # Tests (run once)
 ```bash
 pnpm test -- src/path/to/file.test.tsx
 pnpm test -- -t "test name"
-pnpm test -- shimmer-button
 ```
 
 ### Structure
 ```text
 src/
-  components/
-    ui/            # shadcn/ui components
-    magicui/       # Magic UI components
-    layout/        # layout + sidebar
-  pages/
-    components/    # component demos
+  components/site/ # site sections and cron tool UI
+  i18n/            # translation resources and setup
+  lib/             # cron parsing and builder logic
+  site/            # routing, runtime, site config
+  ssg/             # prerender entry
   test/            # test setup
 ```
 
 ### Style Notes (Short)
 - Use `@/` alias for `src`.
-- Prefer function components; use `className` + `cn`.
+- Prefer function components.
 - Tailwind first; avoid extra global CSS.
 - PascalCase for components, kebab-case for filenames.
 

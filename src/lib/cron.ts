@@ -23,33 +23,8 @@ type AnalysisFailure = {
 
 export type CronAnalysis = AnalysisSuccess | AnalysisFailure;
 
-const fallbackTimeZones = [
-  "UTC",
-  "Asia/Shanghai",
-  "Asia/Tokyo",
-  "Europe/London",
-  "Europe/Berlin",
-  "America/New_York",
-  "America/Los_Angeles",
-  "Australia/Sydney",
-];
-
 export function getDefaultTimeZone() {
   return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
-}
-
-export function getTimeZoneOptions() {
-  const intlWithSupportedValues = Intl as typeof Intl & {
-    supportedValuesOf?: (key: string) => string[];
-  };
-
-  const dynamic = intlWithSupportedValues.supportedValuesOf?.("timeZone");
-
-  if (!dynamic?.length) {
-    return fallbackTimeZones;
-  }
-
-  return Array.from(new Set([getDefaultTimeZone(), "UTC", ...dynamic]));
 }
 
 export function analyzeCron(

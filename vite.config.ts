@@ -43,7 +43,6 @@ export default defineConfig(({ mode }) => {
         "**/node_modules/**",
         "**/.git/**",
         "**/.worktrees/**",
-        "**/.tmp-react-starter/**",
       ],
       passWithNoTests: true,
       setupFiles: ["src/test/setup.ts"],
