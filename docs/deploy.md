@@ -50,6 +50,11 @@
 
 - `SITE_URL`
 - `SITE_ICP_NO`
+- `UMAMI_SCRIPT_TAG`
+- `UMAMI_SCRIPT_URL`
+- `UMAMI_WEBSITE_ID`
+- `UMAMI_DOMAINS`
+- `UMAMI_HOST_URL`
 - `DEPLOY_PATH`
 
 示例：
@@ -57,6 +62,7 @@
 ```text
 SITE_URL=https://cn.example.com
 SITE_ICP_NO=沪ICP备2026000001号
+UMAMI_SCRIPT_TAG=<script defer src="https://umami.example.com/script.js" data-website-id="11111111-2222-3333-4444-555555555555"></script>
 DEPLOY_PATH=/var/www/stacktick-tools
 ```
 
@@ -65,6 +71,7 @@ DEPLOY_PATH=/var/www/stacktick-tools
 ```text
 SITE_URL=https://global.example.com
 SITE_ICP_NO=
+UMAMI_SCRIPT_TAG=<script defer src="https://umami.example.com/script.js" data-website-id="66666666-7777-8888-9999-000000000000"></script>
 DEPLOY_PATH=/var/www/stacktick-tools
 ```
 
@@ -72,6 +79,9 @@ DEPLOY_PATH=/var/www/stacktick-tools
 
 - `SITE_ICP_NO` 只需要在中国大陆站点配置
 - 留空时，页脚不会显示备案信息
+- 推荐直接配置 `UMAMI_SCRIPT_TAG`，把完整 script 标签原样贴进去
+- 如果没有 `UMAMI_SCRIPT_TAG`，也可以继续使用拆分变量作为兼容方案
+- `UMAMI_HOST_URL` 只有在你使用反向代理或自定义 host 配置时才需要
 
 ### Environment Secrets
 
@@ -168,6 +178,11 @@ sudo systemctl reload nginx
 1. 新建一个 GitHub Environment
 2. 为该 Environment 填写：
    - `SITE_URL`
+   - `UMAMI_SCRIPT_TAG`
+   - `UMAMI_SCRIPT_URL`
+   - `UMAMI_WEBSITE_ID`
+   - `UMAMI_DOMAINS`
+   - `UMAMI_HOST_URL`
    - `DEPLOY_PATH`
    - `DEPLOY_HOST`
    - `DEPLOY_PORT`
@@ -185,11 +200,13 @@ sudo systemctl reload nginx
 2. `pnpm test:run`
 3. `pnpm build`
 4. 用当前 Environment 的 `SITE_URL` 生成对应域名的静态文件
-5. `rsync dist/` 到目标服务器
+5. 如果配置了 Umami，则同时注入当前环境对应的统计脚本参数
+6. `rsync dist/` 到目标服务器
 
 ## 注意事项
 
 - 因为每个域名都是独立站点，所以 `SITE_URL` 不能共用
+- 如果国内和国外站点要写入不同的 Umami 项目，最简单的方式就是分别配置不同的 `UMAMI_SCRIPT_TAG`
 - 中国大陆站点如果需要显示备案号，请为对应 Environment 配置 `SITE_ICP_NO`
 - 如果没有配置 `SITE_URL`，构建产物里的 SEO 链接会退回占位地址
 - 建议部署用户只拥有目标目录权限，不要直接用 `root`

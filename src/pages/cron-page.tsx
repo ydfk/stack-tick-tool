@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CronGuideSection, CronSeoSection, FaqSection, FeaturedSection, RelatedLinksSection } from "@/components/site/sections";
+import { FeaturedSection, RelatedLinksSection } from "@/components/site/sections";
 import type { Locale } from "@/site/config";
 
 type CronPageProps = {

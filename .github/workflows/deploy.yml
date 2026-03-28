@@ -37,6 +37,11 @@ jobs:
     env:
       VITE_SITE_URL: ${{ vars.SITE_URL }}
       VITE_SITE_ICP_NO: ${{ vars.SITE_ICP_NO }}
+      VITE_UMAMI_SCRIPT_TAG: ${{ vars.UMAMI_SCRIPT_TAG }}
+      VITE_UMAMI_SCRIPT_URL: ${{ vars.UMAMI_SCRIPT_URL }}
+      VITE_UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
+      VITE_UMAMI_DOMAINS: ${{ vars.UMAMI_DOMAINS }}
+      VITE_UMAMI_HOST_URL: ${{ vars.UMAMI_HOST_URL }}
       DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
       DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
       DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
