@@ -4,19 +4,53 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 permissions:
   contents: write
-  pull-requests: write
+
+concurrency:
+  group: release-main
+  cancel-in-progress: true
 
 jobs:
   release:
+    if: github.actor != 'github-actions[bot]' && !contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run release-please
-        uses: googleapis/release-please-action@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          config-file: .release-please-config.json
-          manifest-file: .release-please-manifest.json
+          fetch-depth: 0
+
+      - name: Setup Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Generate release version
+        id: version
+        run: |
+          version=$(TZ=Asia/Shanghai date '+%Y.%-m.%-d-t%H%M%S')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Update package version
+        run: |
+          node -e "const fs=require('fs');const file='package.json';const pkg=JSON.parse(fs.readFileSync(file,'utf8'));pkg.version='${{ steps.version.outputs.version }}';fs.writeFileSync(file, JSON.stringify(pkg, null, 2)+'\n');"
+
+      - name: Commit version bump
+        run: |
+          git add package.json
+          git commit -m "chore(release): v${{ steps.version.outputs.version }} [skip ci]"
+          git push origin HEAD:main
+
+      - name: Create and push tag
+        run: |
+          git tag "v${{ steps.version.outputs.version }}"
+          git push origin "v${{ steps.version.outputs.version }}"
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          generate_release_notes: true

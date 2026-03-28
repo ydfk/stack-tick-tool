@@ -2,8 +2,8 @@ name: Deploy
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
   workflow_dispatch:
     inputs:
       target_environment:
@@ -47,6 +47,8 @@ jobs:
       - name: Checkout
         if: env.SHOULD_DEPLOY == 'true'
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup pnpm
         if: env.SHOULD_DEPLOY == 'true'

@@ -1,24 +1,23 @@
 # 自动发版
 
-项目现在使用 `release-please` 管理版本号和 GitHub Release。
+项目现在使用时间版本号自动发版，不再走 Release PR。
 
 ## 触发方式
 
-- 日常开发按 Conventional Commits 提交到 `main`
-- `release-please` 会自动创建或更新 Release PR
-- Release PR 合并后，会自动：
+- 日常开发 push 到 `main`
+- `Release` 工作流会自动：
+  - 用当前时间生成版本号
   - 更新 [`package.json`](/F:/github-my/tool/package.json) 版本号
-  - 更新 `.release-please-manifest.json`
-  - 生成 GitHub Release 和 tag
+  - 自动提交 `chore(release): v...`
+  - 自动创建 `v...` tag
+  - 自动生成 GitHub Release
 
-## 版本规则
+## 版本格式
 
-- `feat:` 对应 `minor`
-- `fix:` 对应 `patch`
-- `feat!:` 或带 breaking change 的提交会触发 `major`
+- 版本号格式是 `YYYY.M.D-tHHMMSS`
+- 例如：`2026.3.28-t223015`
+- 这个格式兼容 `package.json` 所需的 semver
 
 ## 当前文件
 
 - [`release.yml`](/F:/github-my/tool/.github/workflows/release.yml)
-- [`.release-please-config.json`](/F:/github-my/tool/.release-please-config.json)
-- [`.release-please-manifest.json`](/F:/github-my/tool/.release-please-manifest.json)
