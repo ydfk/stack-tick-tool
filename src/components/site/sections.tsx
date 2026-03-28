@@ -1,6 +1,5 @@
 import React from "react";
-import type { LucideIcon } from "lucide-react";
-import { ArrowRight, Clock3, Globe, Search, Sparkles } from "lucide-react";
+import { ArrowRight, Clock3, Sparkles } from "lucide-react";
 
 import { CronWorkbench } from "@/components/site/cron-workbench";
 import { LanguageSwitcher } from "@/components/site/language-switcher";
@@ -69,10 +68,23 @@ export function HeroSection({ locale, pageId }: SharedSectionProps) {
       ? copy.toolsPage.description
       : copy.featured.description;
 
+  const primaryHref = isHomePage
+    ? getPagePath(locale, "cron")
+    : isToolsPage
+      ? getPagePath(locale, "cron")
+      : getPagePath(locale, "home");
+  const secondaryHref = isHomePage
+    ? getPagePath(locale, "tools")
+    : isToolsPage
+      ? getPagePath(locale, "home")
+      : getPagePath(locale, "tools");
+  const primaryLabel = isHomePage ? copy.hero.primaryCta : isToolsPage ? copy.toolsPage.primaryCta : copy.nav.home;
+  const secondaryLabel = isHomePage ? copy.hero.secondaryCta : isToolsPage ? copy.toolsPage.secondaryCta : copy.nav.tools;
+
   return (
-    <section className="grid gap-6 py-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:py-16">
+    <section className="grid gap-6 py-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:py-16">
       <div className="space-y-7">
-        <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/70 px-4 py-2 text-sm font-medium text-primary">
+        <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/75 px-4 py-2 text-sm font-medium text-primary">
           <Sparkles className="h-4 w-4" />
           {isHomePage ? copy.hero.eyebrow : isToolsPage ? copy.toolsPage.eyebrow : copy.featured.eyebrow}
         </div>
@@ -80,62 +92,67 @@ export function HeroSection({ locale, pageId }: SharedSectionProps) {
           <h1 className="font-display max-w-4xl text-5xl font-bold leading-[1.02] tracking-tight text-balance sm:text-6xl lg:text-7xl">
             {title}
           </h1>
-          <p className="max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
-            {description}
-          </p>
+          <p className="max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">{description}</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <a
             className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-92"
-            href={
-              isHomePage
-                ? getPagePath(locale, "cron")
-                : isToolsPage
-                  ? getPagePath(locale, "cron")
-                  : getPagePath(locale, "home")
-            }
+            href={primaryHref}
           >
-            {isHomePage ? copy.hero.primaryCta : isToolsPage ? copy.toolsPage.primaryCta : copy.nav.home}
+            {primaryLabel}
             <ArrowRight className="h-4 w-4" />
           </a>
           <a
-            className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border bg-white/70 px-5 py-3 text-sm font-semibold transition hover:border-primary/35 hover:text-primary"
-            href={
-              isHomePage
-                ? getPagePath(locale, "tools")
-                : isToolsPage
-                  ? getPagePath(locale, "home")
-                  : getPagePath(locale, "tools")
-            }
+            className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border bg-white/75 px-5 py-3 text-sm font-semibold transition hover:border-primary/35 hover:text-primary"
+            href={secondaryHref}
           >
-            {isHomePage ? copy.hero.secondaryCta : isToolsPage ? copy.toolsPage.secondaryCta : copy.nav.tools}
+            {secondaryLabel}
           </a>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {copy.hero.stats.map((stat) => (
+            <span
+              key={stat.label}
+              className="rounded-full border border-border/80 bg-white/70 px-3 py-1.5 text-xs font-medium text-muted-foreground"
+            >
+              <span className="mr-2 font-display text-sm font-bold text-foreground">{stat.value}</span>
+              {stat.label}
+            </span>
+          ))}
         </div>
       </div>
 
-      <div className="surface-card surface-grid rounded-[2rem] border border-white/70 p-6 sm:p-8">
-        <div className="grid gap-4 sm:grid-cols-3">
-          {copy.hero.stats.map((stat) => (
-            <div key={stat.label} className="rounded-[1.4rem] bg-white/70 p-4 shadow-sm">
-              <p className="font-display text-2xl font-bold text-primary">{stat.value}</p>
-              <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+      <div className="surface-card rounded-[2rem] border border-white/70 p-6 sm:p-8">
+        <div className="rounded-[1.6rem] border border-border/80 bg-white/75 p-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-muted-foreground">
+            {copy.featured.eyebrow}
+          </p>
+          <div className="mt-4 rounded-[1.4rem] bg-[linear-gradient(135deg,rgba(15,111,101,0.12),rgba(255,255,255,0.92))] p-5">
+            <div className="inline-flex rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+              Quartz 6/7
             </div>
-          ))}
-        </div>
-        <div className="mt-8 grid gap-4">
-          <FeatureItem icon={Search} title="SEO-first" description={copy.architecture.items[0]?.description ?? ""} />
-          <FeatureItem icon={Globe} title="Bilingual" description={copy.architecture.items[1]?.description ?? ""} />
-          <FeatureItem
-            icon={Clock3}
-            title={isHomePage ? "Practical" : isToolsPage ? copy.nav.tools : copy.cronGuide.eyebrow}
-            description={
-              isHomePage
-                ? copy.featured.description
-                : isToolsPage
-                  ? copy.roadmap.description
-                  : copy.cronGuide.description
-            }
-          />
+            <h2 className="font-display mt-4 text-3xl font-bold tracking-tight text-foreground">
+              {copy.cronTool.title}
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">{copy.cronTool.subtitle}</p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {copy.cronTool.examples.slice(0, 2).map((example) => (
+                <span
+                  key={example.value}
+                  className="rounded-full border border-primary/15 bg-white/85 px-3 py-1.5 font-mono text-xs text-primary"
+                >
+                  {example.value}
+                </span>
+              ))}
+            </div>
+            <a
+              className="mt-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-92"
+              href={getPagePath(locale, "cron")}
+            >
+              {copy.hero.primaryCta}
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -149,21 +166,22 @@ export function FeaturedSection({ locale, pageId }: SharedSectionProps) {
     return (
       <section className="space-y-6 py-10">
         <SectionHeading eyebrow={copy.featured.eyebrow} title={copy.featured.title} description={copy.featured.description} />
-        <div className="surface-card rounded-[2rem] border border-white/70 p-6 sm:p-8">
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
-            <div className="space-y-4">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
+          <div className="surface-card rounded-[2rem] border border-white/70 p-6 sm:p-8">
+            <div className="space-y-5">
               <div className="inline-flex rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
                 Quartz 6/7
               </div>
-              <h3 className="font-display text-3xl font-bold tracking-tight">
-                {copy.cronTool.title}
-              </h3>
+              <h3 className="font-display text-3xl font-bold tracking-tight">{copy.cronTool.title}</h3>
               <p className="text-base leading-8 text-muted-foreground">{copy.cronTool.subtitle}</p>
-              <ul className="space-y-3 text-sm leading-7 text-muted-foreground">
-                <li>{copy.cronTool.descriptionLabel}</li>
-                <li>{copy.cronTool.nextRunsLabel}</li>
-                <li>{copy.cronGuide.notes[0]}</li>
-              </ul>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {copy.cronTool.examples.map((example) => (
+                  <div key={example.value} className="rounded-[1.3rem] border border-border/80 bg-white/70 p-4">
+                    <p className="text-sm font-semibold text-foreground">{example.label}</p>
+                    <p className="mt-2 font-mono text-sm text-primary">{example.value}</p>
+                  </div>
+                ))}
+              </div>
               <a
                 className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-92"
                 href={getPagePath(locale, "cron")}
@@ -172,20 +190,32 @@ export function FeaturedSection({ locale, pageId }: SharedSectionProps) {
                 <ArrowRight className="h-4 w-4" />
               </a>
             </div>
+          </div>
 
-            <div className="rounded-[1.8rem] border border-border/80 bg-white/65 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-                Preview
-              </p>
-              <div className="mt-4 space-y-3">
-                {copy.cronTool.examples.map((example) => (
-                  <div key={example.value} className="rounded-2xl bg-[var(--input)] px-4 py-3">
-                    <p className="text-sm font-semibold text-foreground">{example.label}</p>
-                    <p className="mt-1 font-mono text-sm text-primary">{example.value}</p>
+          <div className="surface-card rounded-[2rem] border border-white/70 p-6 sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground">
+              {locale === "zh-CN" ? "即将上线" : "Coming next"}
+            </p>
+            <div className="mt-4 space-y-3">
+              {copy.roadmap.items.slice(1, 5).map((item) => (
+                <div key={item.title} className="rounded-[1.3rem] border border-border/80 bg-white/70 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-display text-lg font-bold text-foreground">{item.title}</p>
+                    <span className="rounded-full bg-accent px-2.5 py-1 text-[11px] font-semibold text-accent-foreground">
+                      {item.badge}
+                    </span>
                   </div>
-                ))}
-              </div>
+                  <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.description}</p>
+                </div>
+              ))}
             </div>
+            <a
+              className="mt-5 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-primary transition hover:opacity-80"
+              href={getPagePath(locale, "tools")}
+            >
+              {copy.hero.secondaryCta}
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </section>
@@ -353,26 +383,6 @@ function SectionHeading({ eyebrow, title, description }: SectionHeadingProps) {
       <p className="text-xs font-semibold uppercase tracking-[0.32em] text-muted-foreground">{eyebrow}</p>
       <h2 className="font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl">{title}</h2>
       {description ? <p className="text-base leading-8 text-muted-foreground">{description}</p> : null}
-    </div>
-  );
-}
-
-type FeatureItemProps = {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-};
-
-function FeatureItem({ icon: Icon, title, description }: FeatureItemProps) {
-  return (
-    <div className="flex items-start gap-4 rounded-[1.5rem] bg-white/72 p-4 shadow-sm">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/12 text-primary">
-        <Icon className="h-5 w-5" />
-      </div>
-      <div>
-        <p className="font-display text-lg font-bold">{title}</p>
-        <p className="mt-1 text-sm leading-7 text-muted-foreground">{description}</p>
-      </div>
     </div>
   );
 }

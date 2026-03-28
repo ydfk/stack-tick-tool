@@ -45,7 +45,19 @@ export function getBrowserLocale(): Locale {
 
   const browserLocales = navigator.languages?.length ? navigator.languages : [navigator.language];
 
-  return browserLocales.some((item) => item.toLowerCase().startsWith("en")) ? "en" : "zh-CN";
+  for (const item of browserLocales) {
+    const normalized = item.toLowerCase();
+
+    if (normalized.startsWith("zh")) {
+      return "zh-CN";
+    }
+
+    if (normalized.startsWith("en")) {
+      return "en";
+    }
+  }
+
+  return "zh-CN";
 }
 
 function isBotUserAgent() {

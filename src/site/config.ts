@@ -108,14 +108,14 @@ export const siteCopy: Record<Locale, CopyBundle> = {
     nav: { home: "首页", tools: "工具列表", cron: "Cron 工具" },
     hero: {
       eyebrow: "程序员在线工具箱",
-      title: "从 Cron 开始，做一个更适合长期搜索增长的工具站。",
+      title: "让常用开发者工具保持独立、可搜索、打开就能直接使用。",
       description:
-        "栈刻工具箱首发聚焦 Quartz 6/7 位 Cron 表达式，提供实时解析、自然语言说明、最近执行时间和时区切换。后续会按开发者工具常用分类持续扩展。",
+        "栈刻工具箱首发提供 Cron 表达式生成与解析，重点解决表达式编写、字段理解和执行时间预览。后续会继续扩展更多真正高频的开发者工具。",
       primaryCta: "直接打开 Cron 工具",
-      secondaryCta: "查看即将上线工具",
+      secondaryCta: "查看工具列表",
       stats: [
-        { value: "Quartz 6/7", label: "表达式支持" },
-        { value: "多时区", label: "执行时间计算" },
+        { value: "Linux / Quartz", label: "格式支持" },
+        { value: "未来 10 次", label: "执行预览" },
         { value: "中英双语", label: "界面与 SEO" },
       ],
     },
@@ -123,7 +123,7 @@ export const siteCopy: Record<Locale, CopyBundle> = {
       eyebrow: "首发工具",
       title: "在线 Cron 表达式解析器",
       description:
-        "输入表达式后立即获得规范化结果、自然语言说明、未来 10 次执行时间，以及语法告警和错误提示。",
+        "首页只保留最核心的入口和产品信息，真正的工具能力都放在独立页面里，避免首页像模板站或功能堆砌页。",
     },
     roadmap: {
       eyebrow: "工具路线图",
@@ -246,14 +246,14 @@ export const siteCopy: Record<Locale, CopyBundle> = {
     nav: { home: "Home", tools: "Tools", cron: "Cron Tool" },
     hero: {
       eyebrow: "Developer Toolbox",
-      title: "Start with cron, grow into a search-friendly toolbox for developers.",
+      title: "Keep developer tools standalone, searchable, and ready to use the moment the page opens.",
       description:
-        "StackTick Tools launches with a Quartz 6/7 cron parser, human-readable descriptions, next-run previews, and timezone switching. More developer utilities will be added on top of this structure.",
+        "StackTick Tools launches with a cron builder and parser focused on expression authoring, field clarity, and next-run previews. More high-frequency developer utilities will be added next.",
       primaryCta: "Open Cron Tool",
-      secondaryCta: "See Upcoming Tools",
+      secondaryCta: "Browse Tools",
       stats: [
-        { value: "Quartz 6/7", label: "syntax coverage" },
-        { value: "Timezone-aware", label: "run previews" },
+        { value: "Linux / Quartz", label: "syntax coverage" },
+        { value: "Next 10", label: "run previews" },
         { value: "Bilingual", label: "UI and SEO" },
       ],
     },
@@ -261,7 +261,7 @@ export const siteCopy: Record<Locale, CopyBundle> = {
       eyebrow: "Featured Utility",
       title: "Cron Expression Parser",
       description:
-        "Type an expression and get normalized output, plain-English explanations, the next 10 run times, and parser warnings in one place.",
+        "The homepage stays focused on product entry and structure. The full tool experience lives on dedicated pages instead of turning the landing page into a crowded demo board.",
     },
     roadmap: {
       eyebrow: "Tool Roadmap",

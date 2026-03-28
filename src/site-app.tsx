@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 
 import {
-  ArchitectureSection,
   FeaturedSection,
   HeroSection,
   RoadmapSection,
@@ -34,7 +33,6 @@ export function App({ locale, pageId }: AppProps) {
         <main>
           {pageId !== "cron" ? <HeroSection locale={locale} pageId={pageId} /> : null}
           <FeaturedSection locale={locale} pageId={pageId} />
-          {pageId === "home" ? <ArchitectureSection locale={locale} /> : null}
           {pageId === "tools" ? <RoadmapSection locale={locale} /> : null}
         </main>
         <SiteFooter locale={locale} />
