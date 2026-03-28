@@ -18,7 +18,6 @@ concurrency:
 jobs:
   deploy:
     name: Deploy ${{ matrix.environment }}
-    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.target_environment == '' || github.event.inputs.target_environment == matrix.environment }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -37,46 +36,62 @@ jobs:
       DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
       DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
       DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+      SHOULD_DEPLOY: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.target_environment == '' || github.event.inputs.target_environment == matrix.environment }}
 
     steps:
+      - name: Skip unmatched environment
+        if: env.SHOULD_DEPLOY != 'true'
+        run: |
+          echo "Skip ${{ matrix.environment }} because target_environment=${{ github.event.inputs.target_environment }}"
+
       - name: Checkout
+        if: env.SHOULD_DEPLOY == 'true'
         uses: actions/checkout@v4
 
       - name: Setup pnpm
+        if: env.SHOULD_DEPLOY == 'true'
         uses: pnpm/action-setup@v4
         with:
           version: 10.6.2
 
       - name: Setup Node.js
+        if: env.SHOULD_DEPLOY == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
           cache: pnpm
 
       - name: Install dependencies
+        if: env.SHOULD_DEPLOY == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Run tests
+        if: env.SHOULD_DEPLOY == 'true'
         run: pnpm test:run
 
       - name: Build site
+        if: env.SHOULD_DEPLOY == 'true'
         run: pnpm build
 
       - name: Start SSH agent
+        if: env.SHOULD_DEPLOY == 'true'
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
 
       - name: Add deploy host to known_hosts
+        if: env.SHOULD_DEPLOY == 'true'
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -p "${DEPLOY_PORT:-22}" -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
 
       - name: Ensure target directory exists
+        if: env.SHOULD_DEPLOY == 'true'
         run: |
           ssh -p "${DEPLOY_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH'"
 
       - name: Upload dist via rsync
+        if: env.SHOULD_DEPLOY == 'true'
         run: |
           rsync -az --delete \
             -e "ssh -p ${DEPLOY_PORT:-22}" \
